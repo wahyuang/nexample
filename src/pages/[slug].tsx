@@ -1,3 +1,11 @@
+import Hero from "@/blocks/hero";
+import MediaText from "@/blocks/media-text";
+
 export default function PageRoute() {
-  return <h1 className="text-4xl">This is Page</h1>;
+  return (
+    <>
+      <Hero />
+      <MediaText />
+    </>
+  );
 }
