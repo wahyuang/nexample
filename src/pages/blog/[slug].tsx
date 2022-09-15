@@ -5,7 +5,7 @@ import { AiOutlineCalendar } from "react-icons/ai";
 export default function BlogRoute() {
   return (
     <>
-      <div className="relative mt-10 mb-10">
+      <div className="relative mb-10">
         <div className="text-center">
           <h1 className="mb-5 text-4xl font-bold leading-normal text-sky-500">
             Lorem ipsum dolor sit amet.
