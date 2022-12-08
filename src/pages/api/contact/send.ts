@@ -2,9 +2,8 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import type { Error } from "@/types/api";
 import { jsonToFormData } from "@/utils/common";
 
-type Data = {
-  name: string;
-};
+const BACKEND_URL = process.env.BACKEND_URL;
+const FORM_ID = process.env.CONTACT_FORM_ID;
 
 type APIResponse = {
   data: {} | null;
@@ -37,7 +36,7 @@ export default async (
      * Send the message to wp contact form 7
      */
     const sendMessage = await fetch(
-      "http://wp.nexample.local/wp-json/contact-form-7/v1/contact-forms/22/feedback",
+      `${BACKEND_URL}/wp-json/contact-form-7/v1/contact-forms/${FORM_ID}/feedback`,
       {
         method: "POST",
         body: formData,
