@@ -3,7 +3,6 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { SideMenu } from "./Mobile";
 import Head from "next/head";
-import PageTransition from "@/components/animations/PageTransition";
 import { motion } from "framer-motion";
 import SplashScreen from "@/components/animations/SplashScreen";
 import { useSplashContext } from "@/context/SplashContext";
