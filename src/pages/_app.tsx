@@ -1,5 +1,6 @@
 import "@/styles/app.css";
 import type { AppProps } from "next/app";
+import { ReCaptchaProvider } from "next-recaptcha-v3";
 import { MobileMenuWrapper } from "@/context/MobileMenu";
 import Layout from "@/components/layout";
 import { AnimatePresence } from "framer-motion";
@@ -10,15 +11,17 @@ function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   return (
-    <MobileMenuWrapper>
-      <SplashContextWrapper>
-        <AnimatePresence exitBeforeEnter>
-          <Layout key={router.asPath}>
-            <Component {...pageProps} />
-          </Layout>
-        </AnimatePresence>
-      </SplashContextWrapper>
-    </MobileMenuWrapper>
+    <ReCaptchaProvider>
+      <MobileMenuWrapper>
+        <SplashContextWrapper>
+          <AnimatePresence exitBeforeEnter>
+            <Layout key={router.asPath}>
+              <Component {...pageProps} />
+            </Layout>
+          </AnimatePresence>
+        </SplashContextWrapper>
+      </MobileMenuWrapper>
+    </ReCaptchaProvider>
   );
 }
 
