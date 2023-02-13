@@ -52,8 +52,8 @@ export const SideMenu = () => {
                 const { url, title } = menu;
                 return (
                   <div key={`side-menu-item-${index}`}>
-                    <Link href={url}>
-                      <a onClick={() => setMobileMenu(false)}>{title}</a>
+                    <Link href={url} onClick={() => setMobileMenu(false)}>
+                      {title}
                     </Link>
                   </div>
                 );

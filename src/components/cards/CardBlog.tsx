@@ -11,9 +11,9 @@ export const CardBlog = ({ data }: CardBlogProps) => {
         <div className="w-full h-[270px] bg-gray-200 rounded-md relative overflow-hidden">
           <Image
             src={thumbnail.node.sourceUrl}
-            layout="fill"
             className="absolute inset-0 object-cover"
             alt={thumbnail.node.title}
+            fill
           />
         </div>
       )}
@@ -22,9 +22,7 @@ export const CardBlog = ({ data }: CardBlogProps) => {
         <div>
           {title && (
             <h3 className="text-xl font-bold">
-              <Link href={`/blog/${slug}`}>
-                <a>{title}</a>
-              </Link>
+              <Link href={`/blog/${slug}`}>{title}</Link>
             </h3>
           )}
         </div>
@@ -34,11 +32,12 @@ export const CardBlog = ({ data }: CardBlogProps) => {
 
         {slug && (
           <div className="flex justify-start mt-5">
-            <Link href={`/blog/${slug}`}>
-              <a className="flex items-center text-sm group hover:text-sky-500">
-                Read more{" "}
-                <BsArrowRight className="ml-2 transition-[margin] group-hover:ml-3" />
-              </a>
+            <Link
+              href={`/blog/${slug}`}
+              className="flex items-center text-sm group hover:text-sky-500"
+            >
+              Read more{" "}
+              <BsArrowRight className="ml-2 transition-[margin] group-hover:ml-3" />
             </Link>
           </div>
         )}

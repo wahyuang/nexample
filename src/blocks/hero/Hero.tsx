@@ -18,7 +18,8 @@ export const Hero = () => {
         <Image
           src={`/images/hero-home.jpg`}
           className="absolute top-0 left-0 object-cover w-full h-full"
-          layout="fill"
+          alt="Hero Image"
+          fill
         />
       </motion.div>
       <div className="absolute top-0 left-0 z-20 w-full h-full bg-opacity-70 bg-sky-700"></div>

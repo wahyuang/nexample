@@ -1,5 +1,4 @@
 import Hero from "@/blocks/hero";
-import Link from "next/link";
 import { AiOutlineCalendar } from "react-icons/ai";
 
 export default function BlogRoute() {

@@ -10,7 +10,8 @@ const CardMediaText = () => {
           <Image
             src={`/images/hero-home.jpg`}
             className="absolute top-0 left-0 object-cover w-full h-full"
-            layout="fill"
+            alt="Card Image"
+            fill
           />
         </div>
       </div>

@@ -9,12 +9,11 @@ interface Button {
 
 export const Button = ({ href = `/`, className = ``, children }: Button) => {
   return (
-    <Link href={href}>
-      <a
-        className={`inline-block px-4 py-2 border border-solid border-transparent rounded-md text-sm ${className}`}
-      >
-        {children}
-      </a>
+    <Link
+      href={href}
+      className={`inline-block px-4 py-2 border border-solid border-transparent rounded-md text-sm ${className}`}
+    >
+      {children}
     </Link>
   );
 };

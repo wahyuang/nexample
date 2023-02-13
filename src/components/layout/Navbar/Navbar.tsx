@@ -8,10 +8,11 @@ const MainMenu = [
 
 const NavItem = ({ url, children }: { url: string; children: string }) => {
   return (
-    <Link href={url}>
-      <a className="block py-2 px-4 rounded-md bg-transparent hover:bg-sky-500 hover:text-white hover:no-underline transition-all duration-300 text-sm text-gray-600">
-        {children}
-      </a>
+    <Link
+      href={url}
+      className="block px-4 py-2 text-sm text-gray-600 transition-all duration-300 bg-transparent rounded-md hover:bg-sky-500 hover:text-white hover:no-underline"
+    >
+      {children}
     </Link>
   );
 };
