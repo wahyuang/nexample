@@ -1,7 +1,9 @@
 import { CardBlog } from "@/components/cards";
+import { getPosts } from "@/libs/api";
+import { Posts } from "@/types/api";
 import { motion } from "framer-motion";
 
-export default function Blog() {
+export default function Blog({ postsData }: { postsData: Posts }) {
   return (
     <>
       <div className="mb-5 overflow-hidden">
@@ -19,14 +21,21 @@ export default function Blog() {
         initial="hidden"
         animate="show"
       >
-        {[...Array(6).keys()].map((index) => {
+        {postsData.posts.nodes?.map((item) => {
           return (
             <motion.div
               className="w-full px-4 mb-6 md:w-1/3"
               variants={animCard}
-              key={`card-blog-${index}`}
+              key={item.slug}
             >
-              <CardBlog />
+              <CardBlog
+                data={{
+                  title: item.title,
+                  slug: item.slug,
+                  excerpt: item.excerpt,
+                  thumbnail: item.featuredImage,
+                }}
+              />
             </motion.div>
           );
         })}
@@ -56,4 +65,14 @@ const animCard = {
     opacity: 1,
     y: 0,
   },
+};
+
+export const getStaticProps = async () => {
+  const blogPosts = await getPosts({ perPage: 9 });
+
+  return {
+    props: {
+      postsData: blogPosts,
+    },
+  };
 };
