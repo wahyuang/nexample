@@ -1,8 +1,10 @@
+"use client";
+
 import { useCallback, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useReCaptcha } from "next-recaptcha-v3";
 import { ContactFormFields, FormResponse } from "@/types/Form";
-import { FormErrorMessage } from "@/components/forms";
+import { FormErrorMessage } from "@/components/forms/FormErrorMessage";
 
 export const ContactForm = () => {
   const {

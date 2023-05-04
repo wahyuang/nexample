@@ -1,4 +1,7 @@
+"use client";
+import { useSplashContext } from "@/context/SplashContext";
 import { animate, motion } from "framer-motion";
+import { useState } from "react";
 
 const BlueScreen = {
   init: {
@@ -30,6 +33,8 @@ const animTitle = {
 };
 
 export default function SplashScreen() {
+  const { setFirstMount } = useSplashContext();
+
   return (
     <motion.div
       className="fixed top-0 left-0 flex items-center justify-center w-full h-screen text-white bg-sky-500 z-[999]"
@@ -38,11 +43,16 @@ export default function SplashScreen() {
       animate="animate"
       exit="exit"
       onTransitionEnd={(ab) => {
-        console.log(ab);
+        // console.log(`onTransitionEnd`, ab);
       }}
-      onAnimationStart={() => document.body.classList.add(`overflow-hidden`)}
+      onAnimationStart={() => {
+        // console.log("onAnimationStart");
+        document.body.classList.add(`overflow-hidden`);
+      }}
       onAnimationComplete={() => {
+        // console.log("onAnimationComplete");
         document.body.classList.remove(`overflow-hidden`);
+        setFirstMount(false);
       }}
     >
       <div className="overflow-hidden">

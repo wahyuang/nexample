@@ -5,6 +5,9 @@ const nextConfig = {
   images: {
     domains: ["wp.nexample.local"],
   },
+  experimental: {
+    appDir: true,
+  },
 };
 
 module.exports = nextConfig;

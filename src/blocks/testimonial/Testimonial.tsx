@@ -1,3 +1,4 @@
+"use client";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
 import { RiDoubleQuotesL } from "react-icons/ri";
@@ -44,7 +45,7 @@ export const Testimonial = () => {
             },
           }}
         >
-          {[...Array(10)].map((index) => {
+          {[...Array(10).keys()].map((index) => {
             return (
               <SwiperSlide key={index}>
                 <CardTestimonial />

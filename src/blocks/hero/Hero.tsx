@@ -1,3 +1,4 @@
+"use client";
 import { ButtonSolid } from "@/components/buttons";
 import { motion } from "framer-motion";
 import Image from "next/image";

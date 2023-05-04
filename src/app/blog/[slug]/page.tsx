@@ -1,7 +1,7 @@
 import Hero from "@/blocks/hero";
 import { AiOutlineCalendar } from "react-icons/ai";
 
-export default function BlogRoute() {
+export default function BlogDetailRoute() {
   return (
     <>
       <div className="relative mb-10">

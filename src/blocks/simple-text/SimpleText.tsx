@@ -1,3 +1,4 @@
+"use client";
 import { BsArrowRight } from "react-icons/bs";
 import { motion } from "framer-motion";
 

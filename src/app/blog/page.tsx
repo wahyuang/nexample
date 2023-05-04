@@ -1,11 +1,20 @@
+"use client";
+
 import { CardBlog } from "@/components/cards";
 import { getPosts } from "@/libs/api";
 import { Posts } from "@/types/api";
 import { motion } from "framer-motion";
+import Layout from "@/components/layout";
 
-export default function Blog({ postsData }: { postsData: Posts }) {
+export default function BlogRoute() {
+  const postsData: Posts = {
+    posts: {
+      nodes: [],
+    },
+  };
+
   return (
-    <>
+    <Layout>
       <div className="mb-5 overflow-hidden">
         <motion.h1
           className="mb-0 text-4xl font-bold leading-normal text-sky-500"
@@ -40,7 +49,7 @@ export default function Blog({ postsData }: { postsData: Posts }) {
           );
         })}
       </motion.div>
-    </>
+    </Layout>
   );
 }
 
@@ -67,12 +76,12 @@ const animCard = {
   },
 };
 
-export const getStaticProps = async () => {
-  const blogPosts = await getPosts({ perPage: 9 });
+// export const getStaticProps = async () => {
+//   const blogPosts = await getPosts({ perPage: 9 });
 
-  return {
-    props: {
-      postsData: blogPosts,
-    },
-  };
-};
+//   return {
+//     props: {
+//       postsData: blogPosts,
+//     },
+//   };
+// };

@@ -1,29 +1,29 @@
-import { useRouter } from "next/router";
+"use client";
 import {
   createContext,
   ReactNode,
   useContext,
   useEffect,
   useState,
+  useRef,
+  Dispatch,
+  SetStateAction,
 } from "react";
 
-const SplashContext = createContext({
+interface TSplashContext {
+  isFirstMount: boolean;
+  setFirstMount: Dispatch<SetStateAction<boolean>>;
+}
+
+const SplashContext = createContext<TSplashContext>({
   isFirstMount: true,
+  setFirstMount: () => null,
 });
 
 export const SplashContextWrapper = ({ children }: { children: ReactNode }) => {
   const [isFirstMount, setFirstMount] = useState(true);
-  const router = useRouter();
 
-  useEffect(() => {
-    const handleRouteChange = () => isFirstMount && setFirstMount(false);
-
-    router.events.on(`routeChangeStart`, handleRouteChange);
-
-    return () => router.events.off(`routeChangeStart`, handleRouteChange);
-  }, []);
-
-  const value = { isFirstMount: isFirstMount };
+  const value = { isFirstMount, setFirstMount };
 
   return (
     <SplashContext.Provider value={value}>{children}</SplashContext.Provider>
