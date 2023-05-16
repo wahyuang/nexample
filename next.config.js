@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["wp.nexample.local"],
+    domains: ["strapi.nexample.xyz"],
   },
 };
 

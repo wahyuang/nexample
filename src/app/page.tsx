@@ -1,4 +1,4 @@
-import Hero from "@/blocks/hero";
+// import Hero from "@/blocks/hero";
 import InlineLogo from "@/blocks/inline-logo";
 import Newsletter from "@/blocks/newsletter";
 import SimpleText from "@/blocks/simple-text";
@@ -10,7 +10,7 @@ export default function IndexRoute<NextPage>() {
   return (
     <>
       <Layout>
-        <Hero />
+        {/* <Hero /> */}
         <SimpleText />
         <InlineLogo />
         <Testimonial />

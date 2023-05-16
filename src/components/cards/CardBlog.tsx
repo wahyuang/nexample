@@ -3,16 +3,22 @@ import Image from "next/image";
 import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
 
-export const CardBlog = ({ data }: CardBlogProps) => {
-  const { title, slug, excerpt, thumbnail } = data;
+export const CardBlog = ({
+  title,
+  slug,
+  excerpt,
+  thumbnail,
+}: CardBlogProps) => {
   return (
     <div className="relative rounded-md">
       {thumbnail && (
         <div className="w-full h-[270px] bg-gray-200 rounded-md relative overflow-hidden">
           <Image
-            src={thumbnail.node.sourceUrl}
+            src={thumbnail.url}
+            placeholder="blur"
+            blurDataURL={thumbnail.placeholder}
             className="absolute inset-0 object-cover"
-            alt={thumbnail.node.title}
+            alt={thumbnail.alt}
             fill
           />
         </div>

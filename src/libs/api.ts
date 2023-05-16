@@ -1,6 +1,74 @@
 import { Posts } from "@/types/api";
+import { Payload } from "@/types/payload";
+import { MiniPost, Post } from "@/types/api/post";
+import qs from "qs";
 
-const BACKEND_URL = process.env.BACKEND_URL;
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+
+const TOKEN = process.env.NEXT_PUBLIC_STRAPI_TOKEN;
+
+export default async function strapi(
+  endpoint: string,
+  params = {},
+  options = {}
+) {
+  const queryParams = qs.stringify(params, { addQueryPrefix: true });
+
+  return await fetch(
+    `${BACKEND_URL}${endpoint}${queryParams ? queryParams : ``}`,
+    {
+      headers: {
+        "Content-Type": `application/json`,
+        Authorization: `Bearer ${TOKEN}`,
+      },
+      next: { revalidate: 1 },
+      ...options,
+    }
+  )
+    .then(async (response) => {
+      if (response.status >= 200 && response.status < 299) {
+        return response.json();
+      }
+
+      // Log fetch failed => Response Promise
+      console.log(`Fail fetch ${endpoint}`);
+      console.log(await response.json());
+
+      return null;
+    })
+    .catch((error) => {
+      // Log error
+      console.log(error);
+
+      return null;
+    });
+}
+
+export const getHomepage = async () => {
+  const req = await strapi("/api/pages/home");
+  // console.log(await req.json);
+  return {};
+};
+
+export const getPosts = async () => {
+  const req = await strapi("/api/blogs", {
+    pagination: {
+      pageSize: 12,
+    },
+    sort: "publishedAt",
+    populate: "featured_image",
+  });
+
+  return req as Payload<MiniPost[]>;
+};
+
+export const getPost = async (slug: string) => {
+  const req = await strapi(`/api/blogs/${slug}`, {
+    populate: `deep`,
+  });
+
+  return req as Payload<Post>;
+};
 
 const fetchAPI = async (
   query: string,
@@ -29,41 +97,41 @@ const fetchAPI = async (
   return res.data;
 };
 
-export const getPosts = async ({
-  perPage = 15,
-  mediaSize = "LARGE",
-}: {
-  perPage?: number;
-  mediaSize?: "LARGE" | "MEDIUM";
-}): Promise<Posts> => {
-  const req = await fetchAPI(
-    `query getPosts($size: MediaItemSizeEnum = LARGE, $first: Int = 15) {
-      posts(first: $first) {
-        nodes {
-          title
-          slug
-          excerpt(format: RENDERED)
-          featuredImage {
-            node {
-              title
-              sourceUrl(size: $size)
-              sizes
-              mediaDetails {
-                height
-                width
-              }
-            }
-          }
-        }
-      }
-    } `,
-    {
-      variables: {
-        size: mediaSize,
-        first: perPage,
-      },
-    }
-  );
+// export const getPosts = async ({
+//   perPage = 15,
+//   mediaSize = "LARGE",
+// }: {
+//   perPage?: number;
+//   mediaSize?: "LARGE" | "MEDIUM";
+// }): Promise<Posts> => {
+//   const req = await fetchAPI(
+//     `query getPosts($size: MediaItemSizeEnum = LARGE, $first: Int = 15) {
+//       posts(first: $first) {
+//         nodes {
+//           title
+//           slug
+//           excerpt(format: RENDERED)
+//           featuredImage {
+//             node {
+//               title
+//               sourceUrl(size: $size)
+//               sizes
+//               mediaDetails {
+//                 height
+//                 width
+//               }
+//             }
+//           }
+//         }
+//       }
+//     } `,
+//     {
+//       variables: {
+//         size: mediaSize,
+//         first: perPage,
+//       },
+//     }
+//   );
 
-  return req;
-};
+//   return req;
+// };

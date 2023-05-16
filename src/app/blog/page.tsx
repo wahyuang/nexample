@@ -5,13 +5,11 @@ import { getPosts } from "@/libs/api";
 import { Posts } from "@/types/api";
 import { motion } from "framer-motion";
 import Layout from "@/components/layout";
+import { formatImage } from "@/utils/formatImage";
 
-export default function BlogRoute() {
-  const postsData: Posts = {
-    posts: {
-      nodes: [],
-    },
-  };
+export default async function BlogRoute() {
+  const data = await getPosts();
+  const postsData = data.data;
 
   return (
     <Layout>
@@ -30,20 +28,22 @@ export default function BlogRoute() {
         initial="hidden"
         animate="show"
       >
-        {postsData.posts.nodes?.map((item) => {
+        {postsData?.map((post) => {
+          const { title, slug, excerpt, featured_image } = post.attributes;
+
+          const postThumbnail = formatImage(featured_image?.data);
+
           return (
             <motion.div
               className="w-full px-4 mb-6 md:w-1/3"
               variants={animCard}
-              key={item.slug}
+              key={slug}
             >
               <CardBlog
-                data={{
-                  title: item.title,
-                  slug: item.slug,
-                  excerpt: item.excerpt,
-                  thumbnail: item.featuredImage,
-                }}
+                title={title}
+                slug={slug}
+                excerpt={excerpt}
+                thumbnail={postThumbnail}
               />
             </motion.div>
           );
@@ -75,13 +75,3 @@ const animCard = {
     y: 0,
   },
 };
-
-// export const getStaticProps = async () => {
-//   const blogPosts = await getPosts({ perPage: 9 });
-
-//   return {
-//     props: {
-//       postsData: blogPosts,
-//     },
-//   };
-// };

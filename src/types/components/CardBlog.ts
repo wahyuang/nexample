@@ -1,10 +1,9 @@
 import { Media } from "../Media";
+import { ImageType } from "@/types/common";
 
 export interface CardBlogProps {
-  data: {
-    title: string;
-    slug: string;
-    excerpt: string;
-    thumbnail: Media;
-  };
+  title: string;
+  slug: string;
+  excerpt: string;
+  thumbnail: ImageType;
 }
