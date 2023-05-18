@@ -1,3 +1,6 @@
+import { ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
 var FormData = require("form-data");
 
 export function jsonToFormData(data: Record<string, string>) {
@@ -8,4 +11,8 @@ export function jsonToFormData(data: Record<string, string>) {
     });
   }
   return formData;
+}
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
 }

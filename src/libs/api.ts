@@ -46,11 +46,41 @@ export default async function strapi(
 }
 
 export const getHomepage = async () => {
-  const req = await strapi("/api/pages/1", {
+  const HomepageSlug = process.env.NEXT_PUBLIC_HOMEPAGE_SLUG;
+
+  const req = await strapi("/api/pages", {
+    filters: {
+      slug: {
+        $eq: HomepageSlug,
+      },
+    },
     populate: `deep`,
   });
 
-  return req as Payload<Page>;
+  return req as Payload<Page[]>;
+};
+
+export const getPage = async (slug: string) => {
+  const req = await strapi("/api/pages", {
+    filters: {
+      slug: {
+        $eq: slug,
+      },
+    },
+    populate: `deep`,
+  });
+
+  return req as Payload<Page[]>;
+};
+
+export const getPages = async () => {
+  const req = await strapi("/api/pages", {
+    pagination: {
+      pageSize: 100,
+    },
+  });
+
+  return req as Payload<Page[]>;
 };
 
 export const getPosts = async () => {

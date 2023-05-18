@@ -8,6 +8,7 @@ import type { NewsletterBlock } from "@/types/api/blocks/newsletter";
 import type { CarouselReviewBlock } from "@/types/api/blocks/carousel-review";
 
 import { formatImage } from "@/utils/formatImage";
+import { MediaTextApi } from "@/types/api/blocks/media-text";
 
 export default function BlockGenerator(block: Block) {
   const { id, __component: name } = block;
@@ -97,6 +98,39 @@ export default function BlockGenerator(block: Block) {
         <SectionNewsletter
           title={dataBlock.title}
           content={dataBlock.content}
+          key={key}
+        />
+      );
+    }
+
+    case `blocks.media-text`: {
+      const dataBlock = block as MediaTextApi;
+
+      const MediaText = dynamic(() => import("@/blocks/media-text"));
+
+      const image = dataBlock.media_image.data.length
+        ? formatImage(dataBlock.media_image.data[0])
+        : undefined;
+
+      const reverse = dataBlock.image_position == "right";
+
+      const ctaButton = dataBlock.cta_button;
+
+      const cta = ctaButton
+        ? {
+            title: ctaButton.title,
+            url: ctaButton.url,
+            target: ctaButton.new_window ? "_blank" : undefined,
+          }
+        : undefined;
+
+      return (
+        <MediaText
+          title={dataBlock.title}
+          content={dataBlock.content}
+          image={image}
+          reverse={reverse}
+          cta={cta}
           key={key}
         />
       );
