@@ -28,9 +28,9 @@ const CloseButton = () => {
 };
 
 const MainMenu = [
-  { url: `/services`, title: "Services" },
-  { url: `/blog`, title: "Blog" },
-  { url: `/contact`, title: "Contact" },
+  { url: `/services`, title: `Services` },
+  { url: `/blog`, title: `Blog` },
+  { url: `/contact`, title: `Contact` },
 ];
 
 export const SideMenu = () => {

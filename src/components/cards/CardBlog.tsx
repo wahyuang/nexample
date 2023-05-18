@@ -42,7 +42,7 @@ export const CardBlog = ({
               href={`/blog/${slug}`}
               className="flex items-center text-sm group hover:text-sky-500"
             >
-              Read more{" "}
+              Read more
               <BsArrowRight className="ml-2 transition-[margin] group-hover:ml-3" />
             </Link>
           </div>

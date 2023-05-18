@@ -1,7 +1,6 @@
 "use client";
 import { useSplashContext } from "@/context/SplashContext";
-import { animate, motion } from "framer-motion";
-import { useState } from "react";
+import { motion } from "framer-motion";
 
 const BlueScreen = {
   init: {
@@ -11,17 +10,17 @@ const BlueScreen = {
     opacity: 0,
     transition: {
       duration: 0.5,
-      when: "afterChildren",
+      when: `afterChildren`,
     },
     transitionEnd: {
-      display: "none",
+      display: `none`,
     },
   },
 };
 
 const animTitle = {
   init: {
-    y: "100%",
+    y: `100%`,
   },
   animate: {
     y: [100, 0, 0, -100],
@@ -42,7 +41,7 @@ export default function SplashScreen() {
       initial="init"
       animate="animate"
       exit="exit"
-      onTransitionEnd={(ab) => {
+      onTransitionEnd={() => {
         // console.log(`onTransitionEnd`, ab);
       }}
       onAnimationStart={() => {

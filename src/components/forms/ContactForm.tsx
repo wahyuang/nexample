@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useReCaptcha } from "next-recaptcha-v3";
 import { ContactFormFields, FormResponse } from "@/types/Form";
@@ -17,27 +17,27 @@ export const ContactForm = () => {
   const { executeRecaptcha } = useReCaptcha();
 
   const [formResponse, setFormResponse] = useState<FormResponse>({
-    status: "error",
-    message: "",
+    status: `error`,
+    message: ``,
   });
 
   const onFormSubmit: SubmitHandler<ContactFormFields> = useCallback(
     async (data) => {
       // request recaptcha token
-      const token = await executeRecaptcha("contactFormSubmit");
+      const token = await executeRecaptcha(`contactFormSubmit`);
 
       // assign token to form data
       if (token) {
-        data["token"] = token;
-        data["_wpcf7_recaptcha_response"] = token;
-        data["wpcf7_recaptcha_response"] = token;
-        data["recaptcha_response"] = token;
-        data["response"] = token;
+        data[`token`] = token;
+        data[`_wpcf7_recaptcha_response`] = token;
+        data[`wpcf7_recaptcha_response`] = token;
+        data[`recaptcha_response`] = token;
+        data[`response`] = token;
       }
 
       //send message
       const req = await fetch(`/api/contact/send`, {
-        method: "POST",
+        method: `POST`,
         body: JSON.stringify(data),
       });
 
@@ -46,15 +46,15 @@ export const ContactForm = () => {
       /**
        * Handle API response
        */
-      if (res.status === "mail_sent") {
+      if (res.status === `mail_sent`) {
         setFormResponse({
-          status: "success",
+          status: `success`,
           message: res.message,
         });
         reset();
       } else {
         setFormResponse({
-          status: "error",
+          status: `error`,
           message: res.message,
         });
       }

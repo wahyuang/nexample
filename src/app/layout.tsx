@@ -1,14 +1,12 @@
 import "@/styles/app.css";
 import { ReCaptchaProvider } from "next-recaptcha-v3";
 import { MobileMenuWrapper } from "@/context/MobileMenu";
-import Layout from "@/components/layout";
 import { AnimatePresence } from "@/components/framer/AnimatePresence";
-import { useRouter } from "next/router";
 import { SplashContextWrapper } from "@/context/SplashContext";
 
 export const metadata = {
-  title: "Nexample",
-  description: "Welcome to Next.js",
+  title: `Nexample`,
+  description: `Welcome to Next.js`,
 };
 
 export default function RootLayout({

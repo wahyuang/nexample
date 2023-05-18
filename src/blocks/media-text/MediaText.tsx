@@ -33,9 +33,9 @@ export const MediaText = ({
               <Image
                 src={image.url}
                 className="absolute top-0 left-0 object-cover w-full h-full"
-                alt={image.alt ? image.alt : "card image"}
+                alt={image.alt ? image.alt : `card image`}
                 fill
-                placeholder={image.placeholder ? "blur" : undefined}
+                placeholder={image.placeholder ? `blur` : undefined}
                 blurDataURL={image.placeholder ? image.placeholder : undefined}
               />
             </div>

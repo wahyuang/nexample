@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 const WidgetTitle = ({ children }: { children: string }) => {
   return (
     <h3
-      className="text-2xl mb-6 font-bold"
+      className="mb-6 text-2xl font-bold"
       dangerouslySetInnerHTML={{ __html: children }}
     ></h3>
   );
@@ -24,7 +24,7 @@ const SocialIcon = ({
         href={url}
         target="_blank"
         rel="noreferrer"
-        className="w-10 h-10 rounded-full border border-white flex items-center justify-center hover:bg-white hover:text-sky-500 transition-all duration-300"
+        className="flex items-center justify-center w-10 h-10 transition-all duration-300 border border-white rounded-full hover:bg-white hover:text-sky-500"
       >
         {children}
       </a>
@@ -43,10 +43,10 @@ const FooterMenus = [
 
 export const Footer = () => {
   return (
-    <div className="relative bg-sky-500 py-12 text-white">
+    <div className="relative py-12 text-white bg-sky-500">
       <div className="container">
         <div className="flex flex-wrap -mx-4">
-          <div className="w-full md:w-1/3 px-4 mb-5 md:mb-0">
+          <div className="w-full px-4 mb-5 md:w-1/3 md:mb-0">
             <div className="relative">
               <WidgetTitle>About</WidgetTitle>
               <div>
@@ -55,7 +55,7 @@ export const Footer = () => {
                   Praesentium, reiciendis.
                 </p>
                 <p>
-                  e.{" "}
+                  e.{` `}
                   <a
                     href="mailto:hello.anggara@gmail.com"
                     className="hover:underline"
@@ -66,7 +66,7 @@ export const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="w-full md:w-1/3 px-4 mb-5 md:mb-0">
+          <div className="w-full px-4 mb-5 md:w-1/3 md:mb-0">
             <div className="relative">
               <WidgetTitle>Quick Links</WidgetTitle>
               <div className="relative">
@@ -88,7 +88,7 @@ export const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="w-full md:w-1/3 px-4 mb-5 md:mb-0">
+          <div className="w-full px-4 mb-5 md:w-1/3 md:mb-0">
             <div className="relative">
               <WidgetTitle>Social Links</WidgetTitle>
               <div className="relative">
@@ -107,8 +107,8 @@ export const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="pt-4 text-center text-xs mt-9">
-          &copy; 2022. Developed by{" "}
+        <div className="pt-4 text-xs text-center mt-9">
+          &copy; 2022. Developed by{` `}
           <a href="https://facebook.com/wahyuang" className="hover:underline">
             Wahyu Anggara
           </a>

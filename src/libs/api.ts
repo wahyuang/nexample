@@ -1,4 +1,3 @@
-import { Posts } from "@/types/api";
 import { Payload } from "@/types/payload";
 import { MiniPost, Post } from "@/types/api/post";
 import qs from "qs";
@@ -48,7 +47,7 @@ export default async function strapi(
 export const getHomepage = async () => {
   const HomepageSlug = process.env.NEXT_PUBLIC_HOMEPAGE_SLUG;
 
-  const req = await strapi("/api/pages", {
+  const req = await strapi(`/api/pages`, {
     filters: {
       slug: {
         $eq: HomepageSlug,
@@ -61,7 +60,7 @@ export const getHomepage = async () => {
 };
 
 export const getPage = async (slug: string) => {
-  const req = await strapi("/api/pages", {
+  const req = await strapi(`/api/pages`, {
     filters: {
       slug: {
         $eq: slug,
@@ -74,7 +73,7 @@ export const getPage = async (slug: string) => {
 };
 
 export const getPages = async () => {
-  const req = await strapi("/api/pages", {
+  const req = await strapi(`/api/pages`, {
     pagination: {
       pageSize: 100,
     },
@@ -84,12 +83,12 @@ export const getPages = async () => {
 };
 
 export const getPosts = async () => {
-  const req = await strapi("/api/blogs", {
+  const req = await strapi(`/api/blogs`, {
     pagination: {
       pageSize: 12,
     },
-    sort: "publishedAt",
-    populate: "featured_image",
+    sort: `publishedAt`,
+    populate: `featured_image`,
   });
 
   return req as Payload<MiniPost[]>;
@@ -103,16 +102,16 @@ export const getPost = async (slug: string) => {
   return req as Payload<Post>;
 };
 
-const fetchAPI = async (
+export const fetchAPI = async (
   query: string,
   { variables }: Record<string, unknown>
 ) => {
   const headers = {
-    "Content-Type": "application/json",
+    "Content-Type": `application/json`,
   };
 
   const req = await fetch(`${BACKEND_URL}/graphql`, {
-    method: "POST",
+    method: `POST`,
     headers,
     body: JSON.stringify({
       query,

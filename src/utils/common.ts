@@ -1,7 +1,7 @@
 import { ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-var FormData = require("form-data");
+const FormData = require(`form-data`);
 
 export function jsonToFormData(data: Record<string, string>) {
   const formData = new FormData();

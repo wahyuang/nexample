@@ -2,8 +2,8 @@ import { ContactForm } from "@/components/forms";
 import Layout from "@/components/layout";
 
 export const metadata = {
-  title: "Contact | Nexample",
-  description: "Welcome to Next.js",
+  title: `Contact | Nexample`,
+  description: `Welcome to Next.js`,
 };
 
 export default function ContactRoute() {

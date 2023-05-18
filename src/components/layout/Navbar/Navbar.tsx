@@ -1,10 +1,10 @@
 import Link from "next/link";
 
 const MainMenu = [
-  { url: `/services`, title: "Services" },
-  { url: `/blog`, title: "Blog" },
-  { url: `/contact`, title: "Contact" },
-  { url: `/dashboard`, title: "Dashboard" },
+  { url: `/services`, title: `Services` },
+  { url: `/blog`, title: `Blog` },
+  { url: `/contact`, title: `Contact` },
+  { url: `/dashboard`, title: `Dashboard` },
 ];
 
 const NavItem = ({ url, children }: { url: string; children: string }) => {

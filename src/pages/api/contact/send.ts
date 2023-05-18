@@ -6,14 +6,14 @@ const BACKEND_URL = process.env.BACKEND_URL;
 const FORM_ID = process.env.CONTACT_FORM_ID;
 
 type APIResponse = {
-  data: {} | null;
+  data: Record<string, unknown> | null;
   error: Error;
 };
 
-export default async (
+export default async function SendContact(
   req: NextApiRequest,
   res: NextApiResponse<APIResponse>
-) => {
+) {
   const result = {
     data: null,
     error: null,
@@ -38,7 +38,7 @@ export default async (
     const sendMessage = await fetch(
       `${BACKEND_URL}/wp-json/contact-form-7/v1/contact-forms/${FORM_ID}/feedback`,
       {
-        method: "POST",
+        method: `POST`,
         body: formData,
       }
     );
@@ -47,4 +47,4 @@ export default async (
     // console.log(`hasil: `, await kirim.json());
     res.status(200).json(response);
   }
-};
+}

@@ -37,7 +37,7 @@ export default function BlockGenerator(block: Block) {
     case `blocks.basic-text`: {
       const dataBlock = block as BasicTextType;
 
-      const BasicText = dynamic(() => import("@/blocks/simple-text"));
+      const BasicText = dynamic(() => import(`@/blocks/simple-text`));
 
       const ctaButton = dataBlock.cta_button;
 
@@ -46,7 +46,7 @@ export default function BlockGenerator(block: Block) {
           ? {
               title: ctaButton.title,
               url: ctaButton.url,
-              target: ctaButton.new_window ? "_blank" : undefined,
+              target: ctaButton.new_window ? `_blank` : undefined,
             }
           : undefined;
 
@@ -63,7 +63,7 @@ export default function BlockGenerator(block: Block) {
     case `blocks.inline-logo`: {
       const dataBlock = block as InlineLogoBlock;
 
-      const InlineLogo = dynamic(() => import("@/blocks/inline-logo"));
+      const InlineLogo = dynamic(() => import(`@/blocks/inline-logo`));
 
       const logos = dataBlock.logo_gallery.data;
 
@@ -75,7 +75,7 @@ export default function BlockGenerator(block: Block) {
     case `blocks.carousel-review`: {
       const dataBlock = block as CarouselReviewBlock;
 
-      const SectionReview = dynamic(() => import("@/blocks/testimonial"));
+      const SectionReview = dynamic(() => import(`@/blocks/testimonial`));
 
       const reviews = dataBlock.reviews
         ? dataBlock.reviews.map((review) => ({
@@ -92,7 +92,7 @@ export default function BlockGenerator(block: Block) {
     case `blocks.newsletter`: {
       const dataBlock = block as NewsletterBlock;
 
-      const SectionNewsletter = dynamic(() => import("@/blocks/newsletter"));
+      const SectionNewsletter = dynamic(() => import(`@/blocks/newsletter`));
 
       return (
         <SectionNewsletter
@@ -106,13 +106,13 @@ export default function BlockGenerator(block: Block) {
     case `blocks.media-text`: {
       const dataBlock = block as MediaTextApi;
 
-      const MediaText = dynamic(() => import("@/blocks/media-text"));
+      const MediaText = dynamic(() => import(`@/blocks/media-text`));
 
       const image = dataBlock.media_image.data.length
         ? formatImage(dataBlock.media_image.data[0])
         : undefined;
 
-      const reverse = dataBlock.image_position == "right";
+      const reverse = dataBlock.image_position == `right`;
 
       const ctaButton = dataBlock.cta_button;
 
@@ -120,7 +120,7 @@ export default function BlockGenerator(block: Block) {
         ? {
             title: ctaButton.title,
             url: ctaButton.url,
-            target: ctaButton.new_window ? "_blank" : undefined,
+            target: ctaButton.new_window ? `_blank` : undefined,
           }
         : undefined;
 

@@ -47,7 +47,7 @@ export const SimpleText = ({ title, content, cta }: SimpleTextProps) => {
                   className="flex items-center justify-center hover:text-sky-500 group"
                   target={cta.target ? cta.target : undefined}
                 >
-                  {cta.title}{" "}
+                  {cta.title}
                   <BsArrowRight className="ml-2 transition-all duration-300 group-hover:ml-4" />
                 </Link>
               </div>

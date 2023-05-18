@@ -1,4 +1,3 @@
-import { Media } from "../Media";
 import { ImageType } from "@/types/common";
 
 export interface CardBlogProps {

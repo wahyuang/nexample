@@ -20,7 +20,7 @@ export const InlineLogo = ({ title, images }: InlineLogoProps) => {
       <div className="flex justify-center mt-10">
         {images &&
           images.map((logo, index) => {
-            const { url, alt, height, width, placeholder } = logo;
+            const { url, alt, placeholder } = logo;
 
             return (
               <div className="px-4" key={`logo-${index}`}>
