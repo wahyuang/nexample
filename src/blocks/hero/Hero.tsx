@@ -9,7 +9,7 @@ type HeroProps = {
   title?: string;
   content?: string;
   cta?: CTA;
-  image: ImageType;
+  image?: ImageType;
 };
 
 export const Hero = ({ title, content, cta, image }: HeroProps) => {

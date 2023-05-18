@@ -1,29 +1,42 @@
-const Logos = [
-  {
-    name: "Company 1",
-  },
-  {
-    name: "Company 2",
-  },
-  {
-    name: "Company 3",
-  },
-];
-export const InlineLogo = () => {
+import Image from "@/components/image";
+import { ImageType } from "@/types/common";
+
+type InlineLogoProps = {
+  title?: string;
+  images?: ImageType[];
+};
+
+export const InlineLogo = ({ title, images }: InlineLogoProps) => {
   return (
     <div className="py-12">
       <div>
-        <h2 className="text-3xl font-bold text-center text-sky-500">
-          Our Clients
-        </h2>
+        {title && (
+          <h2
+            className="text-3xl font-bold text-center text-sky-500"
+            dangerouslySetInnerHTML={{ __html: title }}
+          />
+        )}
       </div>
       <div className="flex justify-center mt-10">
-        {Logos &&
-          Logos.map((logo, index) => (
-            <div className="px-4" key={`logo-${index}`}>
-              <div className="w-20 h-20 bg-gray-200 rounded-md"></div>
-            </div>
-          ))}
+        {images &&
+          images.map((logo, index) => {
+            const { url, alt, height, width, placeholder } = logo;
+
+            return (
+              <div className="px-4" key={`logo-${index}`}>
+                <div className="relative w-20 h-20 bg-gray-200 rounded-md">
+                  <Image
+                    src={url}
+                    alt={alt ? alt : `inline-logo`}
+                    fill
+                    placeholder={placeholder ? `blur` : undefined}
+                    blurDataURL={placeholder ? placeholder : undefined}
+                    className="absolute top-0 left-0 object-contain w-full h-full"
+                  />
+                </div>
+              </div>
+            );
+          })}
       </div>
     </div>
   );

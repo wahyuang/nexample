@@ -2,6 +2,7 @@ import { Posts } from "@/types/api";
 import { Payload } from "@/types/payload";
 import { MiniPost, Post } from "@/types/api/post";
 import qs from "qs";
+import { Page } from "@/types/api/page";
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
@@ -45,9 +46,11 @@ export default async function strapi(
 }
 
 export const getHomepage = async () => {
-  const req = await strapi("/api/pages/home");
-  // console.log(await req.json);
-  return {};
+  const req = await strapi("/api/pages/1", {
+    populate: `deep`,
+  });
+
+  return req as Payload<Page>;
 };
 
 export const getPosts = async () => {

@@ -1,5 +1,10 @@
 import styles from "./newsletter.module.css";
 
+type NewsletterProps = {
+  title: string;
+  content: string;
+};
+
 const NewsletterForm = () => {
   return (
     <div>
@@ -23,27 +28,28 @@ const NewsletterForm = () => {
   );
 };
 
-export const Newsletter = () => {
+export const Newsletter = ({ title, content }: NewsletterProps) => {
   return (
     <section className="py-12">
       <div className="p-10 rounded-md bg-sky-500">
         <div>
-          <h2 className="text-3xl font-bold text-center text-white">
-            Join Our Newsletter
-          </h2>
+          {title && (
+            <h2
+              className="text-3xl font-bold text-center text-white"
+              dangerouslySetInnerHTML={{ __html: title }}
+            />
+          )}
         </div>
         <div className="max-w-md mx-auto mt-12 text-center text-white">
           <div>
             <NewsletterForm />
           </div>
-          <div className="mt-5 text-sm">
-            <p>
-              By submitting this form you consent to us emailing you
-              occasionally about our products and services. You can unsubscribe
-              from emails at any time, and we will never pass your email to
-              third parties.
-            </p>
-          </div>
+          {content && (
+            <div
+              className="mt-5 text-sm"
+              dangerouslySetInnerHTML={{ __html: content }}
+            />
+          )}
         </div>
       </div>
     </section>
