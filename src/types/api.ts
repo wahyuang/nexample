@@ -15,3 +15,23 @@ export interface Posts {
     }>;
   };
 }
+
+export type ErrorResponse = {
+  status: number;
+  message: string;
+};
+
+export type AuthUser = {
+  jwt: string;
+  user: {
+    id: number;
+    username: string;
+    email: string;
+    blocked: boolean;
+  };
+};
+
+export type ApiResponse<T> = {
+  error: ErrorResponse | null;
+  payload: T;
+};
