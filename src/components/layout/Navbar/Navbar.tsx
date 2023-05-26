@@ -1,10 +1,11 @@
 import Link from "next/link";
+import AuthLink from "./auth-link";
 
 const MainMenu = [
   { url: `/services`, title: `Services` },
   { url: `/blog`, title: `Blog` },
   { url: `/contact`, title: `Contact` },
-  { url: `/dashboard`, title: `Dashboard` },
+  // { url: `/dashboard`, title: `Dashboard` },
 ];
 
 const NavItem = ({ url, children }: { url: string; children: string }) => {
@@ -31,6 +32,7 @@ export const Navbar = () => {
               </div>
             );
           })}
+        <AuthLink />
       </div>
     </div>
   );

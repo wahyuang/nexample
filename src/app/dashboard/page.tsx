@@ -1,3 +1,13 @@
+import ButtonLogout from "@/components/button-logout";
+import Layout from "@/components/layout";
+
 export default function Page() {
-  return <div>This is dashboard</div>;
+  return (
+    <Layout>
+      <div>This is dashboard</div>
+      <div>
+        <ButtonLogout />
+      </div>
+    </Layout>
+  );
 }

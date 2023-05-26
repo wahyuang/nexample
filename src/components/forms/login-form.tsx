@@ -1,7 +1,9 @@
 "use client";
 
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 import Link from "@/components/link";
 
@@ -11,12 +13,47 @@ type DataLoginForm = {
 };
 
 export default function LoginForm() {
-  const { register, handleSubmit } = useForm<DataLoginForm>();
+  const router = useRouter();
 
-  const onFormSubmit: SubmitHandler<DataLoginForm> = useCallback((data) => {
-    console.log(data);
-    return null;
-  }, []);
+  const [formFeedback, setFormFeedback] = useState({
+    status: ``,
+    message: ``,
+  });
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<DataLoginForm>();
+
+  const onFormSubmit: SubmitHandler<DataLoginForm> = useCallback(
+    async (data) => {
+      setFormFeedback({
+        status: ``,
+        message: ``,
+      });
+
+      const req = await signIn(`credentials`, {
+        email: data.email,
+        password: data.password,
+        redirect: false,
+        callbackUrl: `/dashboard`,
+      });
+
+      if (req && req.error) {
+        setFormFeedback({
+          status: `error`,
+          message: req.error,
+        });
+      }
+
+      if (req && !req.error) {
+        router.push(`/dashboard`);
+      }
+
+      return null;
+    },
+    []
+  );
 
   return (
     <form onSubmit={handleSubmit(onFormSubmit)}>
@@ -43,9 +80,10 @@ export default function LoginForm() {
       <div className="mb-4">
         <button
           type="submit"
-          className="block w-full h-10 px-4 text-sm text-white border-none rounded-md bg-sky-400"
+          className={`block w-full h-10 px-4 text-sm text-white border-none rounded-md bg-sky-400 disabled:bg-sky-300`}
+          disabled={isSubmitting}
         >
-          Sign in
+          {isSubmitting ? `Sign In ...` : `Sign In`}
         </button>
       </div>
       <div className="text-center">
@@ -56,6 +94,11 @@ export default function LoginForm() {
           </Link>
         </p>
       </div>
+      {formFeedback && formFeedback.status == `error` && (
+        <div className="px-4 py-2 text-sm text-white bg-red-400 rounded-md">
+          {formFeedback.message}
+        </div>
+      )}
     </form>
   );
 }
