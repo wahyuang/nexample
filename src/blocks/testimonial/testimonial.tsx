@@ -37,7 +37,7 @@ type SectionReviewProps = {
   reviews: CardReviewProps[];
 };
 
-export const Testimonial = ({ title, reviews }: SectionReviewProps) => {
+export default function Testimonial({ title, reviews }: SectionReviewProps) {
   return (
     <section className="py-12">
       <div>
@@ -75,4 +75,4 @@ export const Testimonial = ({ title, reviews }: SectionReviewProps) => {
       </div>
     </section>
   );
-};
+}
