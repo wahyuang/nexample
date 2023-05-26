@@ -10,7 +10,7 @@ type SimpleTextProps = {
   cta?: CTA;
 };
 
-export const SimpleText = ({ title, content, cta }: SimpleTextProps) => {
+export default function SimpleText({ title, content, cta }: SimpleTextProps) {
   return (
     <motion.div
       className="py-12"
@@ -57,4 +57,4 @@ export const SimpleText = ({ title, content, cta }: SimpleTextProps) => {
       </div>
     </motion.div>
   );
-};
+}

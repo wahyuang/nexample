@@ -28,7 +28,7 @@ const NewsletterForm = () => {
   );
 };
 
-export const Newsletter = ({ title, content }: NewsletterProps) => {
+export default function Newsletter({ title, content }: NewsletterProps) {
   return (
     <section className="py-12">
       <div className="p-10 rounded-md bg-sky-500">
@@ -54,4 +54,4 @@ export const Newsletter = ({ title, content }: NewsletterProps) => {
       </div>
     </section>
   );
-};
+}

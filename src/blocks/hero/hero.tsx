@@ -12,7 +12,7 @@ type HeroProps = {
   image?: ImageType;
 };
 
-export const Hero = ({ title, content, cta, image }: HeroProps) => {
+export default function Hero({ title, content, cta, image }: HeroProps) {
   return (
     <div className="relative h-[55vh] p-10 rounded-md bg-sky-500 overflow-hidden">
       {image && (
@@ -66,4 +66,4 @@ export const Hero = ({ title, content, cta, image }: HeroProps) => {
       </motion.div>
     </div>
   );
-};
+}

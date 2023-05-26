@@ -1,3 +1,3 @@
-import { Newsletter } from "./Newsletter";
+import { default as Newsletter } from "./newsletter";
 
 export default Newsletter;

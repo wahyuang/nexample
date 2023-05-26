@@ -1,3 +1,3 @@
-import { Hero } from "./Hero";
+import { default as Hero } from "./hero";
 
 export default Hero;

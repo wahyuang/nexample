@@ -6,7 +6,7 @@ type InlineLogoProps = {
   images?: ImageType[];
 };
 
-export const InlineLogo = ({ title, images }: InlineLogoProps) => {
+export default function InlineLogo({ title, images }: InlineLogoProps) {
   return (
     <div className="py-12">
       <div>
@@ -40,4 +40,4 @@ export const InlineLogo = ({ title, images }: InlineLogoProps) => {
       </div>
     </div>
   );
-};
+}
