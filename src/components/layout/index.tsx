@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import Header from "./Header";
+import Header from "./header";
 import Footer from "./footer";
 import { SideMenu } from "./Mobile";
 import { motion } from "framer-motion";
