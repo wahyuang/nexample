@@ -1,3 +1,3 @@
-import { InlineLogo } from "./InlineLogo";
+import { default as InlineLogo } from "./inline-logo";
 
 export default InlineLogo;
