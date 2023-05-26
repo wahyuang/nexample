@@ -11,13 +11,13 @@ type MediaTextProps = {
   reverse?: boolean;
 };
 
-export const MediaText = ({
+export default function MediaText({
   title,
   content,
   image,
   cta,
   reverse,
-}: MediaTextProps) => {
+}: MediaTextProps) {
   return (
     <section className="py-12">
       <div
@@ -64,4 +64,4 @@ export const MediaText = ({
       </div>
     </section>
   );
-};
+}
