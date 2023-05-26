@@ -1,3 +1,3 @@
-import { Footer } from "./Footer";
+import { default as Footer } from "./footer";
 
 export default Footer;

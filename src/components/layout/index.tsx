@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import Header from "./Header";
-import Footer from "./Footer";
+import Footer from "./footer";
 import { SideMenu } from "./Mobile";
 import { motion } from "framer-motion";
 import SplashScreen from "@/components/animations/splash-screen";

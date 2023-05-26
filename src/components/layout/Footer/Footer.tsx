@@ -1,6 +1,6 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { FaFacebookF, FaInstagram, FaGithub } from "react-icons/fa";
-import type { ReactNode } from "react";
 
 const WidgetTitle = ({ children }: { children: string }) => {
   return (
@@ -41,7 +41,7 @@ const FooterMenus = [
   { url: `/`, title: `Privacy Policy` },
 ];
 
-export const Footer = () => {
+export default function Footer() {
   return (
     <div className="relative py-12 text-white bg-sky-500">
       <div className="container">
@@ -116,4 +116,4 @@ export const Footer = () => {
       </div>
     </div>
   );
-};
+}
