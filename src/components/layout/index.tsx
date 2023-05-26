@@ -5,7 +5,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { SideMenu } from "./Mobile";
 import { motion } from "framer-motion";
-import SplashScreen from "@/components/animations/SplashScreen";
+import SplashScreen from "@/components/animations/splash-screen";
 import { useSplashContext } from "@/context/SplashContext";
 
 const content = (isFirstMount: boolean) => ({
