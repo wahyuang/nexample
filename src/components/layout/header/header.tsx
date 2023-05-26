@@ -1,5 +1,5 @@
-import { BurgerButton } from "../Mobile";
-import Navbar from "@/components/layout/Navbar";
+import { BurgerButton } from "../mobile";
+import Navbar from "@/components/layout/navbar";
 import Logo from "./logo";
 
 export function Header() {

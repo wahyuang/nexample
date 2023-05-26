@@ -3,7 +3,7 @@
 import type { ReactNode } from "react";
 import Header from "./header";
 import Footer from "./footer";
-import { SideMenu } from "./Mobile";
+import { SideMenu } from "./mobile";
 import { motion } from "framer-motion";
 import SplashScreen from "@/components/animations/splash-screen";
 import { useSplashContext } from "@/context/SplashContext";
