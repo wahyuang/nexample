@@ -1,7 +1,7 @@
 import "@/styles/app.css";
 import { ReCaptchaProvider } from "next-recaptcha-v3";
 import { MobileMenuWrapper } from "@/context/MobileMenu";
-import { AnimatePresence } from "@/components/framer/AnimatePresence";
+import { AnimatePresence } from "@/components/framer/animate-presence";
 import { SplashContextWrapper } from "@/context/SplashContext";
 import NextAuthProvider from "@/components/next-auth-provider";
 

@@ -19,7 +19,7 @@ const NavItem = ({ url, children }: { url: string; children: string }) => {
   );
 };
 
-export const Navbar = () => {
+export default function Navbar() {
   return (
     <div className="hidden md:block">
       <div className="flex items-center space-x-4">
@@ -36,4 +36,4 @@ export const Navbar = () => {
       </div>
     </div>
   );
-};
+}

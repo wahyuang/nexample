@@ -4,7 +4,7 @@ import { useCallback, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import { registerUser } from "@/libs/register-user";
-import { FormErrorMessage } from "./FormErrorMessage";
+import { FormErrorMessage } from "./form-error-message";
 import Link from "@/components/link";
 
 type DataRegisterForm = {

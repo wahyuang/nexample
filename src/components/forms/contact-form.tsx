@@ -4,7 +4,7 @@ import { useCallback, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useReCaptcha } from "next-recaptcha-v3";
 import { ContactFormFields, FormResponse } from "@/types/Form";
-import { FormErrorMessage } from "@/components/forms/FormErrorMessage";
+import { FormErrorMessage } from "@/components/forms/form-error-message";
 
 export const ContactForm = () => {
   const {
