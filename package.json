@@ -20,6 +20,7 @@
     "form-data": "^4.0.0",
     "framer-motion": "^10.12.7",
     "next": "^13.4.2",
+    "next-auth": "^4.22.1",
     "next-recaptcha-v3": "^1.1.5",
     "postcss": "^8.4.16",
     "prettier": "^2.8.8",

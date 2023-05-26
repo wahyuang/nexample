@@ -3,6 +3,7 @@ import { ReCaptchaProvider } from "next-recaptcha-v3";
 import { MobileMenuWrapper } from "@/context/MobileMenu";
 import { AnimatePresence } from "@/components/framer/AnimatePresence";
 import { SplashContextWrapper } from "@/context/SplashContext";
+import NextAuthProvider from "@/components/next-auth-provider";
 
 export const metadata = {
   title: `Nexample`,
@@ -17,13 +18,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ReCaptchaProvider>
-          <MobileMenuWrapper>
-            <SplashContextWrapper>
-              <AnimatePresence mode="wait">{children}</AnimatePresence>
-            </SplashContextWrapper>
-          </MobileMenuWrapper>
-        </ReCaptchaProvider>
+        <NextAuthProvider>
+          <ReCaptchaProvider>
+            <MobileMenuWrapper>
+              <SplashContextWrapper>
+                <AnimatePresence mode="wait">{children}</AnimatePresence>
+              </SplashContextWrapper>
+            </MobileMenuWrapper>
+          </ReCaptchaProvider>
+        </NextAuthProvider>
       </body>
     </html>
   );
