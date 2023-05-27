@@ -1,6 +1,7 @@
-import Link from "next/link";
 import { RiCloseFill } from "react-icons/ri";
+
 import { useMobileContext } from "@/context/MobileMenu";
+import NavMobile from "./nav-mobile";
 
 const Overlay = ({ isShow = false }: { isShow?: boolean }) => {
   return (
@@ -27,14 +28,8 @@ const CloseButton = () => {
   );
 };
 
-const MainMenu = [
-  { url: `/services`, title: `Services` },
-  { url: `/blog`, title: `Blog` },
-  { url: `/contact`, title: `Contact` },
-];
-
 export const SideMenu = () => {
-  const { isMobileMenuOpen, setMobileMenu } = useMobileContext();
+  const { isMobileMenuOpen } = useMobileContext();
 
   return (
     <>
@@ -46,20 +41,7 @@ export const SideMenu = () => {
       >
         <CloseButton />
         <div className="py-20 px-7">
-          {MainMenu && (
-            <div className="space-y-8">
-              {MainMenu.map((menu, index) => {
-                const { url, title } = menu;
-                return (
-                  <div key={`side-menu-item-${index}`}>
-                    <Link href={url} onClick={() => setMobileMenu(false)}>
-                      {title}
-                    </Link>
-                  </div>
-                );
-              })}
-            </div>
-          )}
+          <NavMobile />
         </div>
       </div>
     </>

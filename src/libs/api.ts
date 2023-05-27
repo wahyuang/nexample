@@ -2,6 +2,7 @@ import { Payload } from "@/types/payload";
 import { MiniPost, Post } from "@/types/api/post";
 import qs from "qs";
 import { Page } from "@/types/api/page";
+import { NavMenu } from "@/types/api";
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
@@ -100,6 +101,27 @@ export const getPost = async (slug: string) => {
   });
 
   return req as Payload<Post>;
+};
+
+export const getNavMenu = async (slug: string) => {
+  const req = await strapi(`/api/menus`, {
+    filters: {
+      slug: {
+        $eq: slug,
+      },
+    },
+    populate: {
+      0: `items`,
+      items: {
+        populate: {
+          0: `page_item`,
+        },
+      },
+    },
+    nested: true,
+  });
+
+  return req as Payload<NavMenu[]>;
 };
 
 export const fetchAPI = async (
