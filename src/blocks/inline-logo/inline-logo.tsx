@@ -17,13 +17,13 @@ export default function InlineLogo({ title, images }: InlineLogoProps) {
           />
         )}
       </div>
-      <div className="flex justify-center mt-10">
+      <div className="flex flex-wrap justify-center mt-10">
         {images &&
           images.map((logo, index) => {
             const { url, alt, placeholder } = logo;
 
             return (
-              <div className="px-4" key={`logo-${index}`}>
+              <div className="px-2 mb-4 md:px-4" key={`logo-${index}`}>
                 <div className="relative w-20 h-20 bg-gray-200 rounded-md">
                   <Image
                     src={url}
