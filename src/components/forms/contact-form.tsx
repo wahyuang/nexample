@@ -3,8 +3,20 @@
 import { useCallback, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useReCaptcha } from "next-recaptcha-v3";
-import { ContactFormFields, FormResponse } from "@/types/Form";
+
+import { FormResponse } from "@/types/Form";
+
 import { FormErrorMessage } from "@/components/forms/form-error-message";
+
+type ContactFormData = {
+  formID: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  subject: string;
+  message: string;
+  token: string;
+};
 
 export const ContactForm = () => {
   const {
@@ -12,7 +24,7 @@ export const ContactForm = () => {
     handleSubmit,
     reset,
     formState: { isSubmitting, errors, isSubmitSuccessful },
-  } = useForm<ContactFormFields>();
+  } = useForm<ContactFormData>();
 
   const { executeRecaptcha } = useReCaptcha();
 
@@ -21,22 +33,21 @@ export const ContactForm = () => {
     message: ``,
   });
 
-  const onFormSubmit: SubmitHandler<ContactFormFields> = useCallback(
+  const onFormSubmit: SubmitHandler<ContactFormData> = useCallback(
     async (data) => {
+      // assign form ID
+      data[`formID`] = `contact-form`;
+
       // request recaptcha token
       const token = await executeRecaptcha(`contactFormSubmit`);
 
       // assign token to form data
       if (token) {
         data[`token`] = token;
-        data[`_wpcf7_recaptcha_response`] = token;
-        data[`wpcf7_recaptcha_response`] = token;
-        data[`recaptcha_response`] = token;
-        data[`response`] = token;
       }
 
-      //send message
-      const req = await fetch(`/api/contact/send`, {
+      // send message
+      const req = await fetch(`/api/contact`, {
         method: `POST`,
         body: JSON.stringify(data),
       });
@@ -49,13 +60,13 @@ export const ContactForm = () => {
       if (res.status === `mail_sent`) {
         setFormResponse({
           status: `success`,
-          message: res.message,
+          message: `Thank you, your message has been sent.`,
         });
         reset();
       } else {
         setFormResponse({
           status: `error`,
-          message: res.message,
+          message: res.error.message,
         });
       }
     },
@@ -71,11 +82,11 @@ export const ContactForm = () => {
               type="text"
               id=""
               placeholder="First Name"
-              {...register(`f_name`, {
+              {...register(`firstName`, {
                 required: true,
               })}
             />
-            {errors.f_name && (
+            {errors.firstName && (
               <FormErrorMessage>First name is required</FormErrorMessage>
             )}
           </div>
@@ -86,11 +97,11 @@ export const ContactForm = () => {
               type="text"
               id=""
               placeholder="Last Name"
-              {...register(`l_name`, {
+              {...register(`lastName`, {
                 required: true,
               })}
             />
-            {errors.l_name && (
+            {errors.lastName && (
               <FormErrorMessage>Last name is required</FormErrorMessage>
             )}
           </div>
@@ -103,12 +114,16 @@ export const ContactForm = () => {
               type="email"
               id=""
               placeholder="Email"
-              {...register(`p_email`, {
-                required: true,
+              {...register(`email`, {
+                required: `Email address is required`,
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: `Invalid email address`,
+                },
               })}
             />
-            {errors.p_email && (
-              <FormErrorMessage>Email address is required</FormErrorMessage>
+            {errors.email && (
+              <FormErrorMessage>{`${errors.email.message}`}</FormErrorMessage>
             )}
           </div>
         </div>
@@ -120,11 +135,11 @@ export const ContactForm = () => {
               type="text"
               id=""
               placeholder="Subject"
-              {...register(`e_subject`, {
+              {...register(`subject`, {
                 required: true,
               })}
             />
-            {errors.e_subject && (
+            {errors.subject && (
               <FormErrorMessage>Email subject is required</FormErrorMessage>
             )}
           </div>
@@ -153,7 +168,7 @@ export const ContactForm = () => {
       <div className="text-center">
         <button
           type="submit"
-          className="px-8 py-2 text-white rounded-md bg-sky-500 hover:bg-sky-700"
+          className="px-8 py-2 text-white rounded-md bg-sky-500 hover:bg-sky-700 disabled:bg-sky-300"
           disabled={isSubmitting}
         >
           {isSubmitting ? `Sending ...` : `Send`}
