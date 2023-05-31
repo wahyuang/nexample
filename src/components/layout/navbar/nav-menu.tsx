@@ -2,11 +2,12 @@
 
 import { useGlobalContext } from "@/context/global-context";
 import Link from "@/components/link";
+import { formatLink } from "@/utils/common";
 
 const NavItem = ({ url, children }: { url: string; children: string }) => {
   return (
     <Link
-      href={url}
+      href={formatLink(url)}
       className="block px-4 py-2 text-sm text-gray-600 transition-all duration-300 bg-transparent rounded-md hover:bg-sky-500 hover:text-white hover:no-underline"
     >
       {children}
@@ -27,7 +28,7 @@ export default function NavMenu() {
 
         return (
           <div key={`main-menu-${index}`}>
-            <NavItem url={`http://localhost:3000${menuURL}`}>{title}</NavItem>
+            <NavItem url={`${menuURL}`}>{title}</NavItem>
           </div>
         );
       })}

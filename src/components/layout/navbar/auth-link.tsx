@@ -14,7 +14,7 @@ export default function AuthLink() {
     <div>
       <Link
         href={data.url}
-        className="px-4 pt-1 pb-2 text-white rounded-md bg-sky-400"
+        className="block px-4 py-2 pb-2 text-sm text-white rounded-md bg-sky-500"
       >
         {data.title}
       </Link>
